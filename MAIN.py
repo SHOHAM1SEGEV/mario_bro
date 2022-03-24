@@ -1,6 +1,7 @@
 import pygame
 from helpers import screen, X_LOCATION1, Y_LOCATION1, WIDTH1, HEIGHT1, \
-    X_LOCATION2, Y_LOCATION2, WIDTH2, HEIGHT2
+    X_LOCATION2, Y_LOCATION2, WIDTH2, HEIGHT2, mouse_in_button
+from click_button import click_mouse_button
 
 
 def MAIN():
@@ -24,6 +25,9 @@ def MAIN():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if mouse_in_button(click_mouse_button, event.pos):
+                    print('yarlo')
 
         screen.blit(img_1, (0, 0))
         screen.blit(img_2, (275, 300))
