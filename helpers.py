@@ -1,15 +1,17 @@
 import pygame
 
 # the main screen
-screen = pygame.display.set_mode((800, 700))
+WIDTH_OF_SCREEN = 1290
+HEIGHT_OF_SCREEN = 670
+screen = pygame.display.set_mode((WIDTH_OF_SCREEN, HEIGHT_OF_SCREEN))
 
 # the location of the screen
-# the 1 screen
+# PHOTO OF MARIO
 
 X_LOCATION1 = 0
 Y_LOCATION1 = 0
-WIDTH1 = 800
-HEIGHT1 = 680
+WIDTH1 = 1290
+HEIGHT1 = 670
 
 # the button
 X_LOCATION2 = 275

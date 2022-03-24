@@ -30,7 +30,7 @@ def MAIN():
                     print('yarlo')
 
         screen.blit(img_1, (0, 0))
-        screen.blit(img_2, (275, 300))
+        screen.blit(img_2, (X_LOCATION2, Y_LOCATION2))
         pygame.display.update()
     pygame.quit()
     quit()
