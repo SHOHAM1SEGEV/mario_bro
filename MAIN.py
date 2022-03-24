@@ -1,4 +1,5 @@
 import pygame
+from helpers import screen
 from turtledemo import clock
 
 
@@ -7,25 +8,20 @@ def MAIN():
     pygame.display.set_caption("mario_bro")
 
     # background img (mario photo)
-    x_location = 0
-    y_location = 0
-    width = 800
-    height = 680
-    screen = pygame.display.set_mode((800, 700))
+
+
     img_path_1 = "photo/mario_photo.jpg"
     img_1 = pygame.image.load(img_path_1)
-    img_1 = pygame.transform.scale(img_1, (width, height))
-    screen.blit(img_1, (x_location, y_location))
+    img_1 = pygame.transform.scale(img_1, (WIDTH1, HEIGHT1))
+    screen.blit(img_1, (X_LOCATION1, Y_LOCATION1))
 
     # play button photo
-    x_location = 250
-    y_location = 350
-    width = 200
-    height = 100
+
+
     img_path_2 = "photo/play_button.jpg"
     img_2 = pygame.image.load(img_path_2)
-    img_2 = pygame.transform.scale(img_2, (width, height))
-    screen.blit(img_2, (x_location, y_location))
+    img_2 = pygame.transform.scale(img_2, (WIDTH2, HEIGHT2))
+    screen.blit(img_2, (X_LOCATION2, Y_LOCATION2))
 
     running = True
     while running:
