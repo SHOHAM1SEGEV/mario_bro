@@ -1,6 +1,6 @@
 import pygame
-from helpers import screen
-from turtledemo import clock
+from helpers import screen, X_LOCATION1, Y_LOCATION1, WIDTH1, HEIGHT1, \
+    X_LOCATION2, Y_LOCATION2, WIDTH2, HEIGHT2
 
 
 def MAIN():
@@ -8,16 +8,12 @@ def MAIN():
     pygame.display.set_caption("mario_bro")
 
     # background img (mario photo)
-
-
     img_path_1 = "photo/mario_photo.jpg"
     img_1 = pygame.image.load(img_path_1)
     img_1 = pygame.transform.scale(img_1, (WIDTH1, HEIGHT1))
     screen.blit(img_1, (X_LOCATION1, Y_LOCATION1))
 
     # play button photo
-
-
     img_path_2 = "photo/play_button.jpg"
     img_2 = pygame.image.load(img_path_2)
     img_2 = pygame.transform.scale(img_2, (WIDTH2, HEIGHT2))

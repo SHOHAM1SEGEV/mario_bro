@@ -1,6 +1,6 @@
 # the button click on play
 from button import Button
-from helpers import x_location, y_location, width, height
+from helpers import X_LOCATION2, Y_LOCATION2, WIDTH2, HEIGHT2
 
-click_mouse_button = Button(x_location, y_location,
-                            width,height)
+click_mouse_button = Button(X_LOCATION2, Y_LOCATION2,
+                            WIDTH2,HEIGHT2)
