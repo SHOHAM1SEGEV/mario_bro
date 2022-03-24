@@ -10,19 +10,19 @@ def MAIN():
     x_location = 0
     y_location = 0
     width = 800
-    height = 700
+    height = 680
     screen = pygame.display.set_mode((800, 700))
-    img_path_1 = "photos/mario_photo.jpg"
+    img_path_1 = "photo/mario_photo.jpg"
     img_1 = pygame.image.load(img_path_1)
     img_1 = pygame.transform.scale(img_1, (width, height))
     screen.blit(img_1, (x_location, y_location))
 
     # play button photo
-    x_location = 400
+    x_location = 250
     y_location = 350
     width = 200
-    height = 80
-    img_path_2 = "photos/play_button.jpg"
+    height = 100
+    img_path_2 = "photo/play_button.jpg"
     img_2 = pygame.image.load(img_path_2)
     img_2 = pygame.transform.scale(img_2, (width, height))
     screen.blit(img_2, (x_location, y_location))
@@ -34,7 +34,7 @@ def MAIN():
                 running = False
 
         screen.blit(img_1, (0, 0))
-        screen.blit(img_2, (400, 350))
+        screen.blit(img_2, (275, 300))
         pygame.display.update()
     pygame.quit()
     quit()
