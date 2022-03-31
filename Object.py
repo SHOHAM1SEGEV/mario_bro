@@ -1,5 +1,4 @@
 import pygame
-
 from helpers import screen
 
 
@@ -17,4 +16,3 @@ class Object:
     # Method
     def display_image(self):
         screen.blit(self.image, (self.height, self.width))
-

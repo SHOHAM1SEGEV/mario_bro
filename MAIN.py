@@ -55,5 +55,6 @@ def enter_game():
         pygame.display.update()
     pygame.quit()
     quit()
+
 enter_game()
 MAIN()
