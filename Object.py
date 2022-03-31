@@ -1,5 +1,7 @@
 import pygame
 
+from helpers import screen
+
 
 class object:
 # Constructor
@@ -14,5 +16,5 @@ def __init__(self, x, y, height, width, pic):
     self.image = pygame.transform.scale(pic, (height, width) )
 # Method
 def display_image(self):
-    screen.blit(self.image, (height, width))
+    screen.blit(self.image, (self.height, self.width))
 
