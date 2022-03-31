@@ -8,7 +8,7 @@ def MAIN():
     pygame.init()
     pygame.display.set_caption("mario bro")
 
-    img_path_3 = "photo/new_photo.jpg"
+    img_path_3 = "photo/background-2.png"
     img_3 = pygame.image.load(img_path_3)
     img_3 = pygame.transform.scale(img_3, (WIDTH1, HEIGHT1))
     screen.blit(img_3, (X_LOCATION1, Y_LOCATION1))
@@ -20,6 +20,7 @@ def MAIN():
                 running = False
 
         screen.blit(img_3, (X_LOCATION1, Y_LOCATION1))
+
         pygame.display.update()
     pygame.quit()
     quit()
