@@ -21,6 +21,9 @@ def MAIN():
     # IMG GROUND
     ground_1 = Object(X_LOCATION_3, Y_LOCATION_3,WIDTH_3, HEIGHT_3, "photo/wall-1.png")
     ground_2 = Object(0, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
+    ground_3 = Object
+
+    ground_list = [ground_1, ground_3, ground_2]
 
     # IMG PLATFORM
     platform_1_1 = Object(X_LOCATION_3 - 145, 420, 120, 20, "photo/moving-platformlong.png")
@@ -45,6 +48,9 @@ def MAIN():
     flower_2_2 = Object(600, 460, 20, 40, "photo/flower1.png")
 
     flower_list = [flower_1_1, flower_1_2, flower_2_1, flower_2_2]
+
+    # IMG BUSH
+    bush_1 = Object(80, 460, 100, 40, "photo/bush-1.png")
 
     # IMG SQUIDGE 1
     squidge_1 = Object(535, 460, 30, 40, "photo/squidge1.png")
@@ -94,8 +100,8 @@ def MAIN():
         background.display_image()
 
         # IMG GROUND
-        ground_1.display_image()
-        ground_2.display_image()
+        for ground in ground_list:
+            ground.display_image()
 
         # IMG CLOUDS
         for clouds in cloud_list:
@@ -108,6 +114,8 @@ def MAIN():
         for flower in flower_list:
             flower.display_image()
 
+        # IMG BUSH
+        bush_1.display_image()
         # IMG SQUIDGE 1
         squidge_1.display_image()
 
