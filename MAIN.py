@@ -1,4 +1,7 @@
 import pygame
+
+from Mario import Mario
+from Object import Object
 from click_button import click_mouse_button
 from helpers import screen, X_LOCATION_1, Y_LOCATION_1, WIDTH_1, HEIGHT_1, \
     X_LOCATION_2, Y_LOCATION_2, WIDTH_2, HEIGHT_2, mouse_in_button, HEIGHT_3, WIDTH_3, Y_LOCATION_3, X_LOCATION_3
@@ -9,90 +12,114 @@ def MAIN():
         Y_LOCATION_CLOUD_1_PART_2, X_LOCATION_CLOUD_2_PART_1, Y_LOCATION_CLOUD_2_PART_1, X_LOCATION_CLOUD_2_PART_2, \
         Y_LOCATION_CLOUD_2_PART_2
     pygame.init()
+    clock = pygame.time.Clock()
     pygame.display.set_caption("mario bro")
 
     # IMG BACKGROUND
-    img_path_background = "photo/background-2.png"
-    img_background = pygame.image.load(img_path_background)
-    img_background = pygame.transform.scale(img_background, (WIDTH_1, HEIGHT_1))
-    screen.blit(img_background, (X_LOCATION_1, Y_LOCATION_1))
+    background = Object(X_LOCATION_1, Y_LOCATION_1, WIDTH_1, HEIGHT_1, "photo/background-2.png")
 
     # IMG GROUND
-    img_path_ground = "photo/wall-1.png"
-    img_ground = pygame.image.load(img_path_ground)
-    img_ground = pygame.transform.scale(img_ground, (WIDTH_3, HEIGHT_3))
+    ground_1 = Object(X_LOCATION_3, Y_LOCATION_3,WIDTH_3, HEIGHT_3, "photo/wall-1.png")
+    ground_2 = Object(0, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
 
-    # # IMG PLATFORM problem !!!!!!!!!!!!!
-    # img_path_platform = "photo/moving-platformlong.png"
-    # img_platform = pygame.image.load(img_path_platform)
-    # img_platform = pygame.transform.scale(img_platform, (200, 100))
+    # IMG PLATFORM
+    platform_1_1 = Object(X_LOCATION_3 - 145, 420, 120, 20, "photo/moving-platformlong.png")
 
     # IMG CLOUD_1
-    img_path_cloud_1 = "photo/cloud.png"
-    img_cloud_1 = pygame.image.load(img_path_cloud_1)
-    img_cloud_1 = pygame.transform.scale(img_cloud_1, (120, 50))
+    cloud_1_1 = Object(X_LOCATION_CLOUD_1_PART_1, Y_LOCATION_CLOUD_1_PART_1, 120, 50, "photo/cloud.png")
+    cloud_1_2 = Object(X_LOCATION_CLOUD_1_PART_2, Y_LOCATION_CLOUD_1_PART_2, 120, 50, "photo/cloud.png")
 
     # IMG CLOUD_2
-    img_path_cloud_2 = "photo/dobbelclouds.png"
-    img_cloud_2 = pygame.image.load(img_path_cloud_2)
-    img_cloud_2 = pygame.transform.scale(img_cloud_2, (150, 70))
+    cloud_2_1 = Object(X_LOCATION_CLOUD_2_PART_1, Y_LOCATION_CLOUD_2_PART_1, 150, 70, "photo/dobbelclouds.png")
+    cloud_2_2 = Object(X_LOCATION_CLOUD_2_PART_2, Y_LOCATION_CLOUD_2_PART_2, 150, 70, "photo/dobbelclouds.png")
+    cloud_2_3 = Object(1300, Y_LOCATION_CLOUD_2_PART_1 - 50, 150, 70, "photo/dobbelclouds.png")
+
+    cloud_list = [cloud_1_1, cloud_1_2, cloud_2_1, cloud_2_2, cloud_2_3]
 
     # IMG FLOWER 1
-    img_path_plower_1 = "photo/flower0.png"
-    img_plower_1 = pygame.image.load(img_path_plower_1)
-    img_plower_1 = pygame.transform.scale(img_plower_1, (20, 40))
+    flower_1_1 = Object(40, 460, 20, 40, "photo/flower0.png")
+    flower_1_2 = Object(450, 460, 20, 40, "photo/flower0.png")
 
     # IMG FLOWER 2
-    img_path_plower_2 = "photo/flower1.png"
-    img_plower_2 = pygame.image.load(img_path_plower_2)
-    img_plower_2 = pygame.transform.scale(img_plower_2, (20, 40))
+    flower_2_1 = Object(200, 460, 20, 40, "photo/flower1.png")
+    flower_2_2 = Object(600, 460, 20, 40, "photo/flower1.png")
 
+    flower_list = [flower_1_1, flower_1_2, flower_2_1, flower_2_2]
 
+    # IMG SQUIDGE 1
+    squidge_1 = Object(535, 460, 30, 40, "photo/squidge1.png")
+
+    # IMG PIPE
+    pipe_1 = Object(665, 450, 50, 200, "photo/pipe-big.png")
+    pipe_2 = Object(716, 400, 50, 250, "photo/pipe-big.png")
+    pipe_3 = Object(767, 350, 50, 300, "photo/pipe-big.png")
+    pipe_4 = Object(818, 300, 50, 350, "photo/pipe-big.png")
+
+    pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4]
+
+    # MARIO IMG
+    mario = Mario(10, Y_LOCATION_3 - 40, 30, 40, "photo/Mario/mario.png")
 
     running = True
     while running:
-        X_LOCATION_CLOUD_1_PART_1 -= 0.1
-        X_LOCATION_CLOUD_1_PART_2 -= 0.1
-        X_LOCATION_CLOUD_2_PART_1 -= 0.1
-        X_LOCATION_CLOUD_2_PART_2 -= 0.1
 
-        # לעשות שהעננים יחזרו אחורה במקום להמשיך
-        if X_LOCATION_CLOUD_1_PART_1 == 0:
-            X_LOCATION_CLOUD_1_PART_1 = 1000
-        elif X_LOCATION_CLOUD_1_PART_2 == 0:
-            X_LOCATION_CLOUD_1_PART_2 = 200
+        # cloud moving
+        for cloud in cloud_list:
+            cloud.move_cloud_left()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
+            # press on any key
+            if event.type == pygame.KEYDOWN:
+                # press on left key
+                if event.key == pygame.K_LEFT:
+                    mario.mario_move_left()
+                # press on right key
+                if event.key == pygame.K_RIGHT:
+                    mario.mario_move_right()
+
+                if event.key == pygame.K_UP:
+                    mario.start_jump()
+
+            # leave the press
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    mario.mario_move_left_false()
+                if event.key == pygame.K_RIGHT:
+                    mario.mario_move_right_false()
+
         # IMG BACKGROUND
-        screen.blit(img_background, (X_LOCATION_1, Y_LOCATION_1))
+        background.display_image()
 
         # IMG GROUND
-        screen.blit(img_ground, (X_LOCATION_3, Y_LOCATION_3))
-        screen.blit(img_ground, (0, 500))
+        ground_1.display_image()
+        ground_2.display_image()
 
-        # IMG CLOUD_1
-        screen.blit(img_cloud_1, (X_LOCATION_CLOUD_1_PART_1, Y_LOCATION_CLOUD_1_PART_1))
-        screen.blit(img_cloud_1, (X_LOCATION_CLOUD_1_PART_2, Y_LOCATION_CLOUD_1_PART_2))
+        # IMG CLOUDS
+        for clouds in cloud_list:
+            clouds.display_image()
 
-        # IMG CLOUD_2
-        screen.blit(img_cloud_2, (X_LOCATION_CLOUD_2_PART_1, Y_LOCATION_CLOUD_2_PART_1))
-        screen.blit(img_cloud_2, (X_LOCATION_CLOUD_2_PART_2, Y_LOCATION_CLOUD_2_PART_2))
+        # IMG PLATFORM
+        platform_1_1.display_image()
 
-        # # IMG PLATFORM
-        # screen.blit(img_platform, (X_LOCATION_3 + 100, Y_LOCATION_3 + 400))
+        # IMG FLOWERS
+        for flower in flower_list:
+            flower.display_image()
 
-        # IMG FLOWER 1
-        screen.blit(img_plower_1, (40, 460))
-        screen.blit(img_plower_1, (450, 460))
+        # IMG SQUIDGE 1
+        squidge_1.display_image()
 
-        # IMG FLOWER 2
-        screen.blit(img_plower_2, (200, 460))
-        screen.blit(img_plower_2, (600, 460))
+        # IMG PIPE
+        for pipe in pipe_list:
+            pipe.display_image()
+
+        # MARIO IMG
+        mario.display_image()
 
         pygame.display.update()
+        clock.tick(100)
     pygame.quit()
     quit()
 

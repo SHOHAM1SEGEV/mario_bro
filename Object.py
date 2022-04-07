@@ -11,8 +11,13 @@ class Object:
         self.width = width
         self.pic = pic
         self.pic = pygame.image.load(self.pic)
-        self.image = pygame.transform.scale(pic, (height, width) )
+        self.image = pygame.transform.scale(self.pic, (height, width))
 
-    # Method
     def display_image(self):
-        screen.blit(self.image, (self.height, self.width))
+        screen.blit(self.image, (self.x, self.y))
+
+    def move_cloud_left(self):
+        # cloud back to start
+        if self.x <= -100:
+            self.x = 1300
+        self.x -= 0.8
