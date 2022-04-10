@@ -19,11 +19,14 @@ def MAIN():
     background = Object(X_LOCATION_1, Y_LOCATION_1, WIDTH_1, HEIGHT_1, "photo/background-2.png")
 
     # IMG GROUND
-    ground_1 = Object(X_LOCATION_3, Y_LOCATION_3,WIDTH_3, HEIGHT_3, "photo/wall-1.png")
+    ground_1 = Object(X_LOCATION_3, Y_LOCATION_3, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
     ground_2 = Object(0, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
-    ground_3 = Object
+    ground_3 = Object(868, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
+    ground_4 = Object(670, 650, 200, 15, "photo/wall-1.png")
+    ground_5 = Object(1100, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
+    blocker_1 = Object(860, 190, 130, 130, "photo/blocker.png")
 
-    ground_list = [ground_1, ground_3, ground_2]
+    ground_list = [ground_1, ground_2, ground_3, ground_4, ground_5, blocker_1]
 
     # IMG PLATFORM
     platform_1_1 = Object(X_LOCATION_3 - 145, 420, 120, 20, "photo/moving-platformlong.png")
@@ -42,18 +45,22 @@ def MAIN():
     # IMG FLOWER 1
     flower_1_1 = Object(40, 460, 20, 40, "photo/flower0.png")
     flower_1_2 = Object(450, 460, 20, 40, "photo/flower0.png")
+    flower_1_3 = Object(920, 460, 20, 40, "photo/flower0.png")
 
     # IMG FLOWER 2
     flower_2_1 = Object(200, 460, 20, 40, "photo/flower1.png")
     flower_2_2 = Object(600, 460, 20, 40, "photo/flower1.png")
-
-    flower_list = [flower_1_1, flower_1_2, flower_2_1, flower_2_2]
+    flower_2_3 = Object(1060, 460, 20, 40, "photo/flower1.png")
+    flower_list = [flower_1_1, flower_1_2, flower_2_1, flower_2_2, flower_1_3, flower_2_3]
 
     # IMG BUSH
     bush_1 = Object(80, 460, 100, 40, "photo/bush-1.png")
+    bush_2 = Object(955, 460, 100, 40, "photo/bush-1.png")
+    bush_list = [bush_2, bush_1]
 
     # IMG SQUIDGE 1
     squidge_1 = Object(535, 460, 30, 40, "photo/squidge1.png")
+
 
     # IMG PIPE
     pipe_1 = Object(665, 450, 50, 200, "photo/pipe-big.png")
@@ -62,6 +69,9 @@ def MAIN():
     pipe_4 = Object(818, 300, 50, 350, "photo/pipe-big.png")
 
     pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4]
+
+    # IMG SOLAM
+    solam_1 = Object(868, 300, 30, 200, "photo/solam.JPG")
 
     # MARIO IMG
     mario = Mario(10, Y_LOCATION_3 - 40, 30, 40, "photo/Mario/mario.png")
@@ -115,13 +125,18 @@ def MAIN():
             flower.display_image()
 
         # IMG BUSH
-        bush_1.display_image()
+        for bush in bush_list:
+            bush.display_image()
+
         # IMG SQUIDGE 1
         squidge_1.display_image()
 
         # IMG PIPE
         for pipe in pipe_list:
             pipe.display_image()
+
+        # IMG SOLAM
+        solam_1.display_image()
 
         # MARIO IMG
         mario.display_image()
