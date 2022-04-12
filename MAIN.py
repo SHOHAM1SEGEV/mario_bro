@@ -61,7 +61,6 @@ def MAIN():
     # IMG SQUIDGE 1
     squidge_1 = Object(535, 460, 30, 40, "photo/squidge1.png")
 
-
     # IMG PIPE
     pipe_1 = Object(665, 450, 50, 200, "photo/pipe-big.png")
     pipe_2 = Object(716, 400, 50, 250, "photo/pipe-big.png")
@@ -139,7 +138,7 @@ def MAIN():
         solam_1.display_image()
 
         # MARIO IMG
-        mario.display_image()
+        mario.display_image(pipe_list)
 
         pygame.display.update()
         clock.tick(100)
