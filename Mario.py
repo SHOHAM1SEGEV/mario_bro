@@ -21,10 +21,25 @@ class Mario(Object):
             self.moving_right = True
 
     def start_jump(self):
+        if self.gravity != 0:
+            return
+
         self.y = self.y - 5
         if not self.jumping:
             self.gravity = -5
             self.jumping = True
+
+    def is_on_ground(self, ground: Object):
+        return (ground.x <= self.x <= ground.x + ground.width or ground.x <= self.x + self.width <= ground.x + ground.width) and ground.y <= self.y + self.height <= ground.y + ground.height
+
+    def update_grounded_state(self, ground_list : List[Object]):
+        for ground in ground_list:
+            if self.is_on_ground(ground):
+                self.gravity = 0
+                return
+
+        if not self.jumping:
+            self.gravity = 2
 
     def mario_move_right_false(self):
         self.moving_right = False
@@ -59,9 +74,9 @@ class Mario(Object):
                         self.gravity = 1
                         self.y = platform_1_1.y - self.height
 
-            if self.jumping:
-                self.gravity = self.gravity + 0.1
-                self.y += self.gravity
+        if self.gravity != 0:
+            self.gravity = self.gravity + 0.1
+            self.y += self.gravity
         screen.blit(self.image, (self.x, self.y))
 
 

@@ -8,6 +8,7 @@ from helpers import screen, X_LOCATION_1, Y_LOCATION_1, WIDTH_1, HEIGHT_1, \
 
 
 def MAIN():
+    global ground
     from helpers import X_LOCATION_CLOUD_1_PART_1, Y_LOCATION_CLOUD_1_PART_1, X_LOCATION_CLOUD_1_PART_2, \
         Y_LOCATION_CLOUD_1_PART_2, X_LOCATION_CLOUD_2_PART_1, Y_LOCATION_CLOUD_2_PART_1, X_LOCATION_CLOUD_2_PART_2, \
         Y_LOCATION_CLOUD_2_PART_2
@@ -18,6 +19,9 @@ def MAIN():
     # IMG BACKGROUND
     background = Object(X_LOCATION_1, Y_LOCATION_1, WIDTH_1, HEIGHT_1, "photo/background-2.png")
 
+    # IMG PLATFORM
+    platform_1_1 = Object(X_LOCATION_3 - 145, 420, 120, 20, "photo/moving-platformlong.png")
+
     # IMG GROUND
     ground_1 = Object(X_LOCATION_3, Y_LOCATION_3, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
     ground_2 = Object(0, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
@@ -26,10 +30,7 @@ def MAIN():
     ground_5 = Object(1100, 500, WIDTH_3, HEIGHT_3, "photo/wall-1.png")
     blocker_1 = Object(860, 190, 130, 130, "photo/blocker.png")
 
-    ground_list = [ground_1, ground_2, ground_3, ground_4, ground_5, blocker_1]
-
-    # IMG PLATFORM
-    platform_1_1 = Object(X_LOCATION_3 - 145, 420, 120, 20, "photo/moving-platformlong.png")
+    ground_list = [ground_1, ground_2, ground_3, ground_5, blocker_1, platform_1_1]
 
     # IMG CLOUD_1
     cloud_1_1 = Object(X_LOCATION_CLOUD_1_PART_1, Y_LOCATION_CLOUD_1_PART_1, 120, 50, "photo/cloud.png")
@@ -68,7 +69,7 @@ def MAIN():
     pipe_3 = Object(767, 350, 50, 300, "photo/pipe-big.png")
     pipe_4 = Object(818, 300, 50, 350, "photo/pipe-big.png")
 
-    pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4, platform_1_1]
+    pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4]
 
     # IMG SOLAM
     solam_1 = Object(868, 300, 30, 200, "photo/solam.JPG")
@@ -112,6 +113,7 @@ def MAIN():
         # IMG GROUND
         for ground in ground_list:
             ground.display_image()
+        ground_4.display_image()
 
         # IMG CLOUDS
         for clouds in cloud_list:
@@ -138,6 +140,10 @@ def MAIN():
 
         # MARIO IMG
         mario.display_image(pipe_list, platform_1_1)
+
+        # mario fonction
+        # if mario.is_on_ground(ground):
+        mario.update_grounded_state(ground_list)
 
         if squidge_1.accident(mario):
             running = False
