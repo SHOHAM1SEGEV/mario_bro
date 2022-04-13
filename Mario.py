@@ -1,5 +1,4 @@
 from typing import List
-
 from Object import Object
 from helpers import screen, WIDTH_OF_SCREEN, Y_LOCATION_3
 
@@ -33,7 +32,7 @@ class Mario(Object):
     def mario_move_left_false(self):
         self.moving_left = False
 
-    def display_image(self, pipe_list: List[Object]):
+    def display_image(self, pipe_list: List[Object], platform_1_1):
         if self.moving_left:
             if self.x >= 0:
                 self.x -= 1
@@ -45,7 +44,7 @@ class Mario(Object):
             if self.y + self.height >= Y_LOCATION_3:
                 self.jumping = False
                 self.gravity = 1
-                self.y = Y_LOCATION_3 - self.height -10
+                self.y = Y_LOCATION_3 - self.height
 
             for pipe in pipe_list:
                 if pipe.x <= self.x <= pipe.x + pipe.width:
@@ -54,7 +53,15 @@ class Mario(Object):
                         self.gravity = 1
                         self.y = pipe.y - self.height
 
+                if platform_1_1.x <= self.x <= platform_1_1.x + platform_1_1.width or platform_1_1.x <= self.x + self.width <= platform_1_1.x + platform_1_1.width:
+                    if self.y + self.height >= platform_1_1.y:
+                        self.jumping = False
+                        self.gravity = 1
+                        self.y = platform_1_1.y - self.height
+
             if self.jumping:
                 self.gravity = self.gravity + 0.1
                 self.y += self.gravity
         screen.blit(self.image, (self.x, self.y))
+
+

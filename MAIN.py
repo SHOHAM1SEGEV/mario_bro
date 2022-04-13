@@ -51,6 +51,7 @@ def MAIN():
     flower_2_1 = Object(200, 460, 20, 40, "photo/flower1.png")
     flower_2_2 = Object(600, 460, 20, 40, "photo/flower1.png")
     flower_2_3 = Object(1060, 460, 20, 40, "photo/flower1.png")
+
     flower_list = [flower_1_1, flower_1_2, flower_2_1, flower_2_2, flower_1_3, flower_2_3]
 
     # IMG BUSH
@@ -59,7 +60,7 @@ def MAIN():
     bush_list = [bush_2, bush_1]
 
     # IMG SQUIDGE 1
-    squidge_1 = Object(535, 460, 30, 40, "photo/squidge1.png")
+    squidge_1 = Object(460, 460, 30, 40, "photo/squidge1.png")
 
     # IMG PIPE
     pipe_1 = Object(665, 450, 50, 200, "photo/pipe-big.png")
@@ -67,7 +68,7 @@ def MAIN():
     pipe_3 = Object(767, 350, 50, 300, "photo/pipe-big.png")
     pipe_4 = Object(818, 300, 50, 350, "photo/pipe-big.png")
 
-    pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4]
+    pipe_list = [pipe_2, pipe_1, pipe_3, pipe_4, platform_1_1]
 
     # IMG SOLAM
     solam_1 = Object(868, 300, 30, 200, "photo/solam.JPG")
@@ -116,9 +117,6 @@ def MAIN():
         for clouds in cloud_list:
             clouds.display_image()
 
-        # IMG PLATFORM
-        platform_1_1.display_image()
-
         # IMG FLOWERS
         for flower in flower_list:
             flower.display_image()
@@ -128,6 +126,7 @@ def MAIN():
             bush.display_image()
 
         # IMG SQUIDGE 1
+        squidge_1.squidge1_moving()
         squidge_1.display_image()
 
         # IMG PIPE
@@ -138,7 +137,10 @@ def MAIN():
         solam_1.display_image()
 
         # MARIO IMG
-        mario.display_image(pipe_list)
+        mario.display_image(pipe_list, platform_1_1)
+
+        if squidge_1.accident(mario):
+            running = False
 
         pygame.display.update()
         clock.tick(100)
